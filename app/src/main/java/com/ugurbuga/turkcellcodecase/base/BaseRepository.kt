@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
-class BaseRepository {
+abstract class BaseRepository {
 
     fun <T : Any> onApiCall(call: suspend () -> T): Flow<Resource<T>> =
         flow {
@@ -18,5 +18,6 @@ class BaseRepository {
             if (BuildConfig.DEBUG) {
                 error.printStackTrace()
             }
+            emit(Resource.Error(error))
         }.flowOn(Dispatchers.IO)
 }
