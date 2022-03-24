@@ -3,10 +3,7 @@ package com.ugurbuga.turkcellcodecase.base
 import com.ugurbuga.turkcellcodecase.BuildConfig
 import com.ugurbuga.turkcellcodecase.Resource
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.*
 
 abstract class BaseRepository {
 
@@ -19,5 +16,28 @@ abstract class BaseRepository {
                 error.printStackTrace()
             }
             emit(Resource.Error(error))
+        }.flowOn(Dispatchers.IO)
+
+
+    fun <T : Any> onRoomCall(call: suspend () -> T): Flow<Resource<T>> =
+        flow {
+            emit(Resource.Loading)
+            emit(Resource.Success(data = call.invoke()))
+        }.catch { error ->
+            if (BuildConfig.DEBUG) {
+                error.printStackTrace()
+            }
+            emit(Resource.Error(error))
+        }.flowOn(Dispatchers.IO)
+
+
+    fun <T : Any?> onRoomFlowCall(call: Flow<T>): Flow<Resource<T>> =
+        flow {
+            emit(Resource.Loading)
+            call.collect {
+                emit(Resource.Success(it))
+            }
+        }.catch {
+            emit(Resource.Error(it))
         }.flowOn(Dispatchers.IO)
 }

@@ -11,7 +11,7 @@ class ProductMapper @Inject constructor() {
         )
     }
 
-    private fun toProductUIModel(response: ProductResponse): ProductUIModel {
+    fun toProductUIModel(response: ProductResponse): ProductUIModel {
         return ProductUIModel(
             image = response.image,
             name = response.name,
