@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.viewbinding.BuildConfig
+import com.ugurbuga.codecase.data.error.GeneralErrorsHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -37,7 +38,11 @@ abstract class BaseViewModel : ViewModel() {
                     dismissLoading()
                 }
                 if (isShowErrorMessage) {
-                    //Show Error
+                    GeneralErrorsHandler(
+                        { message, code ->
+                            checkError(message, code, errorId)
+                        }, status.exception!!
+                    )
                 }
             }
             is Status.Success -> {
@@ -49,6 +54,11 @@ abstract class BaseViewModel : ViewModel() {
                 }
             }
         }
+    }
+
+    private fun checkError(message: Any, code: Int, errorId: Int?) {
+        _baseEvent.emitSuspending(BaseViewEvent.ShowErrorMessage(message, errorId))
+
     }
 
     private fun showLoading() {

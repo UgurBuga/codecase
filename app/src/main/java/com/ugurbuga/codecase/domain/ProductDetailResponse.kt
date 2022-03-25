@@ -1,16 +1,16 @@
 package com.ugurbuga.codecase.domain
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 
 data class ProductDetailResponse(
-    @Json(name = "description")
+    @SerializedName("description")
     val description: String?,
-    @Json(name = "image")
+    @SerializedName("image")
     val image: String,
-    @Json(name = "name")
+    @SerializedName("name")
     val name: String,
-    @Json(name = "price")
+    @SerializedName("price")
     val price: Int,
-    @Json(name = "product_id")
+    @SerializedName("product_id")
     val productId: String
 )

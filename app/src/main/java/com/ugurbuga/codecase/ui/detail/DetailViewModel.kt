@@ -8,6 +8,7 @@ import com.ugurbuga.codecase.base.BaseViewModel
 import com.ugurbuga.codecase.domain.GetProductDetailUseCase
 import com.ugurbuga.codecase.domain.ProductDetailUIModel
 import com.ugurbuga.codecase.domain.ProductUIModel
+import com.ugurbuga.codecase.extensions.doOnStatusChanged
 import com.ugurbuga.codecase.extensions.doOnSuccess
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -31,6 +32,7 @@ class DetailViewModel @Inject constructor(
 
     private fun getProductDetail() {
         getProductDetailUseCase(GetProductDetailUseCase.ProductDetailParams(productId))
+            .doOnStatusChanged { initStatusState(it) }
             .doOnSuccess {
                 _detail.value = it
             }

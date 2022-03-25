@@ -7,6 +7,7 @@ import com.ugurbuga.codecase.base.BaseViewModel
 import com.ugurbuga.codecase.domain.GetProductListUseCase
 import com.ugurbuga.codecase.domain.ProductUIModel
 import com.ugurbuga.codecase.domain.SetProductListUseCase
+import com.ugurbuga.codecase.extensions.doOnStatusChanged
 import com.ugurbuga.codecase.extensions.doOnSuccess
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
@@ -26,7 +27,9 @@ class ListViewModel @Inject constructor(
     }
 
     private fun getProductList() {
-        setProductListUseCase(SetProductListUseCase.ProductListParams()).launchIn(viewModelScope)
+        setProductListUseCase(SetProductListUseCase.ProductListParams())
+            .doOnStatusChanged { initStatusState(it) }
+            .launchIn(viewModelScope)
 
         getProductListUseCase(GetProductListUseCase.ProductListParams())
             .doOnSuccess {

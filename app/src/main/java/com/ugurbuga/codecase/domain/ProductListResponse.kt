@@ -1,9 +1,9 @@
 package com.ugurbuga.codecase.domain
 
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 
 data class ProductListResponse(
-    @Json(name = "products")
+    @SerializedName("products")
     val products: List<ProductResponse>
 )

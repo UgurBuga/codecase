@@ -1,7 +1,5 @@
 package com.ugurbuga.codecase.di.di
 
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.ugurbuga.codecase.BuildConfig
 import com.ugurbuga.codecase.data.api.ApiConstants
 import com.ugurbuga.codecase.data.services.ProductService
@@ -14,8 +12,7 @@ import javax.inject.Singleton
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.converter.scalars.ScalarsConverterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 
 @InstallIn(SingletonComponent::class)
 @Module
@@ -39,20 +36,11 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun providerRetrofit(okHttpClient: OkHttpClient, moshi: Moshi): Retrofit {
+    fun providerRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.API_URL)
-            .addConverterFactory(ScalarsConverterFactory.create())
-            .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
-            .build()
-    }
-
-    @Provides
-    @Singleton
-    fun provideMoshi(): Moshi {
-        return Moshi.Builder()
-            .add(KotlinJsonAdapterFactory())
             .build()
     }
 
