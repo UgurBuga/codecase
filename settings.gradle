@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "turkcellcodecase"
+rootProject.name = "codecase"
 include ':app'
