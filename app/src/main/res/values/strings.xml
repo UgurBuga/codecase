@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Code Case</string>
+    <string name="image_detail">image_detail</string>
 </resources>

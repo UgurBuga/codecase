@@ -1,7 +1,8 @@
 package com.ugurbuga.codecase.ui.list
 
-import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.findNavController
 import com.ugurbuga.codecase.R
 import com.ugurbuga.codecase.base.BaseFragment
 import com.ugurbuga.codecase.databinding.FragmentListBinding
@@ -25,11 +26,12 @@ class ListFragment : BaseFragment<ListViewModel, FragmentListBinding>() {
         viewBinding.listRecyclerView.adapter = adapter
     }
 
-    private fun onProductClicked(
-        product: ProductUIModel,
-        imageView: AppCompatImageView
-    ) {
-        Toast.makeText(requireContext(), product.name, Toast.LENGTH_SHORT).show()
+    private fun onProductClicked(product: ProductUIModel, imageView: AppCompatImageView) {
+
+        val extras = FragmentNavigatorExtras(imageView to getString(R.string.image_detail))
+        val directions = ListFragmentDirections.actionListToDetail(product.productId, product.image)
+
+        findNavController().navigate(directions.actionId, directions.arguments, null, extras)
     }
 
     private fun onListChanged(list: List<ProductUIModel>) {
