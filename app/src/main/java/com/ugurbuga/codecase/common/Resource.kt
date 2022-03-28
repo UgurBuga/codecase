@@ -1,4 +1,4 @@
-package com.ugurbuga.codecase
+package com.ugurbuga.codecase.common
 
 sealed class Resource<out T> {
     class Success<T>(val data: T) : Resource<T>()

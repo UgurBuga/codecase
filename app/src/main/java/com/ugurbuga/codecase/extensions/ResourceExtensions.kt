@@ -1,7 +1,7 @@
 package com.ugurbuga.codecase.extensions
 
-import com.ugurbuga.codecase.Resource
-import com.ugurbuga.codecase.base.Status
+import com.ugurbuga.codecase.common.Status
+import com.ugurbuga.codecase.common.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.transform
 

@@ -4,19 +4,18 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.ugurbuga.codecase.domain.ProductUIModel
-import kotlinx.coroutines.flow.Flow
+import com.ugurbuga.codecase.data.entity.ProductEntity
 
 @Dao
 interface ProductDao {
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(list: ProductUIModel)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(list: ProductEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(list: List<ProductUIModel>)
+    suspend fun insertAll(list: List<ProductEntity>)
 
     @Query("Select * from productTable")
-    fun getProductList(): Flow<List<ProductUIModel>>
+    fun getProductList(): List<ProductEntity>
 
 }

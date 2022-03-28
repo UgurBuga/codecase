@@ -1,14 +1,13 @@
 package com.ugurbuga.codecase.ui.detail
 
 import android.os.Bundle
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.transition.TransitionInflater
 import com.ugurbuga.codecase.R
 import com.ugurbuga.codecase.base.BaseFragment
 import com.ugurbuga.codecase.bindings.setImageUrl
 import com.ugurbuga.codecase.databinding.FragmentDetailBinding
-import com.ugurbuga.codecase.domain.ProductDetailUIModel
+import com.ugurbuga.codecase.domain.model.ProductDetailUIModel
 import com.ugurbuga.codecase.extensions.observe
 import dagger.hilt.android.AndroidEntryPoint
 

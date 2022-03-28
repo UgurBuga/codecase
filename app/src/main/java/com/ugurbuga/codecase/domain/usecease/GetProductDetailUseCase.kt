@@ -1,11 +1,13 @@
-package com.ugurbuga.codecase.domain
+package com.ugurbuga.codecase.domain.usecease
 
-import com.ugurbuga.codecase.Resource
 import com.ugurbuga.codecase.base.BaseUseCase
-import com.ugurbuga.codecase.map
+import com.ugurbuga.codecase.common.Resource
+import com.ugurbuga.codecase.common.map
+import com.ugurbuga.codecase.domain.mapper.ProductMapper
+import com.ugurbuga.codecase.domain.model.ProductDetailUIModel
 import com.ugurbuga.codecase.repository.product.ProductRepository
-import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 class GetProductDetailUseCase @Inject constructor(

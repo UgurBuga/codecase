@@ -1,9 +1,8 @@
 package com.ugurbuga.codecase.repository.product
 
-import com.ugurbuga.codecase.Resource
-import com.ugurbuga.codecase.domain.ProductDetailResponse
-import com.ugurbuga.codecase.domain.ProductListResponse
-import com.ugurbuga.codecase.domain.ProductUIModel
+import com.ugurbuga.codecase.common.Resource
+import com.ugurbuga.codecase.data.model.response.ProductDetailResponse
+import com.ugurbuga.codecase.data.model.response.ProductListResponse
 import kotlinx.coroutines.flow.Flow
 
 interface ProductRepository {
@@ -12,9 +11,4 @@ interface ProductRepository {
 
     fun getProductDetail(productId: String): Flow<Resource<ProductDetailResponse>>
 
-    fun getProductListFromLocale(): Flow<Resource<List<ProductUIModel>>>
-
-    suspend fun insertList(list: List<ProductUIModel>)
-
-    suspend fun insertProduct(product: ProductUIModel)
 }

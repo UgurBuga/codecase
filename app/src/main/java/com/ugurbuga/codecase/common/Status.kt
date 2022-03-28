@@ -1,4 +1,4 @@
-package com.ugurbuga.codecase.base
+package com.ugurbuga.codecase.common
 
 sealed class Status {
 

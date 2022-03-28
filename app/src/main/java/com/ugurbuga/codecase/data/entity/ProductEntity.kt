@@ -1,11 +1,11 @@
-package com.ugurbuga.codecase.domain
+package com.ugurbuga.codecase.data.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "productTable")
-data class ProductUIModel(
+data class ProductEntity(
 
     @PrimaryKey
     @ColumnInfo(name = "productId")

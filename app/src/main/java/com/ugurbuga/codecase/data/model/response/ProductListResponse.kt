@@ -1,4 +1,4 @@
-package com.ugurbuga.codecase.domain
+package com.ugurbuga.codecase.data.model.response
 
 
 import com.google.gson.annotations.SerializedName

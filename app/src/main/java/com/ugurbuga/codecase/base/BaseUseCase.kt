@@ -1,6 +1,6 @@
 package com.ugurbuga.codecase.base
 
-import com.ugurbuga.codecase.Resource
+import com.ugurbuga.codecase.common.Resource
 import kotlinx.coroutines.flow.Flow
 
 abstract class BaseUseCase<Request, Response> {

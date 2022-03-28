@@ -1,7 +1,7 @@
 package com.ugurbuga.codecase.data.services
 
-import com.ugurbuga.codecase.domain.ProductListResponse
-import com.ugurbuga.codecase.domain.ProductDetailResponse
+import com.ugurbuga.codecase.data.model.response.ProductListResponse
+import com.ugurbuga.codecase.data.model.response.ProductDetailResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 

@@ -1,9 +1,7 @@
 package com.ugurbuga.codecase.data.error
 
 import com.ugurbuga.codecase.R
-import java.net.SocketException
-import java.net.SocketTimeoutException
-import java.net.UnknownHostException
+import com.ugurbuga.codecase.common.Util
 import retrofit2.HttpException
 
 class GeneralErrorsHandler(
@@ -14,7 +12,7 @@ class GeneralErrorsHandler(
     private var errorBody: ErrorBody? = null
 
     init {
-        if (isNetworkError(throwable)) {
+        if (Util.isNetworkError(throwable)) {
             onErrorMessage?.invoke(R.string.network_error, 400)
         } else if (throwable is HttpException) {
             errorBody = ErrorBody.parseError(throwable.response())
@@ -35,11 +33,5 @@ class GeneralErrorsHandler(
                 errorBody.code
             )
         }
-    }
-
-    private fun isNetworkError(throwable: Throwable): Boolean {
-        return throwable is SocketException ||
-                throwable is UnknownHostException ||
-                throwable is SocketTimeoutException
     }
 }

@@ -6,7 +6,7 @@ import androidx.navigation.fragment.findNavController
 import com.ugurbuga.codecase.R
 import com.ugurbuga.codecase.base.BaseFragment
 import com.ugurbuga.codecase.databinding.FragmentListBinding
-import com.ugurbuga.codecase.domain.ProductUIModel
+import com.ugurbuga.codecase.domain.model.ProductUIModel
 import com.ugurbuga.codecase.extensions.observe
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,9 +21,14 @@ class ListFragment : BaseFragment<ListViewModel, FragmentListBinding>() {
 
     override fun onInitDataBinding() {
         observe(viewModel.list, ::onListChanged)
+        observe(viewModel.viewState, ::onViewState)
 
         adapter = ProductListAdapter(::onProductClicked)
         viewBinding.listRecyclerView.adapter = adapter
+    }
+
+    private fun onViewState(listViewState: ListViewState) {
+        viewBinding.viewState = listViewState
     }
 
     private fun onProductClicked(product: ProductUIModel, imageView: AppCompatImageView) {

@@ -3,17 +3,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="viewState"
+            type="com.ugurbuga.codecase.ui.list.ListViewState" />
+
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list_recycler_view"
+            visible="@{!viewState.emptyState}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:spanCount="2"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="2"
             tools:listitem="@layout/item_product" />
+
+        <TextView
+            visible="@{viewState.emptyState}"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="match_parent"
+            android:text="@string/list_is_empty" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

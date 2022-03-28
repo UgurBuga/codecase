@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.ugurbuga.codecase.base.BaseListAdapter
-import com.ugurbuga.codecase.domain.ProductUIModel
+import com.ugurbuga.codecase.domain.model.ProductUIModel
 
 class ProductListAdapter(
     private val onProductClicked: ((item: ProductUIModel, imageView: AppCompatImageView) -> Unit)? = null,

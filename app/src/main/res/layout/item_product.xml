@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.ugurbuga.codecase.domain.ProductUIModel" />
+            type="com.ugurbuga.codecase.domain.model.ProductUIModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

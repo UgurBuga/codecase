@@ -6,7 +6,7 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.view.ViewCompat
 import com.ugurbuga.codecase.base.BaseViewHolder
 import com.ugurbuga.codecase.databinding.ItemProductBinding
-import com.ugurbuga.codecase.domain.ProductUIModel
+import com.ugurbuga.codecase.domain.model.ProductUIModel
 import com.ugurbuga.codecase.extensions.executeAfter
 
 class ListViewHolder(

@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.viewbinding.BuildConfig
+import com.ugurbuga.codecase.common.Status
 import com.ugurbuga.codecase.data.error.GeneralErrorsHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -12,7 +13,7 @@ import kotlinx.coroutines.launch
 
 abstract class BaseViewModel : ViewModel() {
 
-    private val _baseEvent = MutableSharedFlow<BaseViewEvent>()
+    protected val _baseEvent = MutableSharedFlow<BaseViewEvent>()
     val baseEvent: SharedFlow<BaseViewEvent> = _baseEvent
 
     fun initStatusState(
@@ -39,8 +40,8 @@ abstract class BaseViewModel : ViewModel() {
                 }
                 if (isShowErrorMessage) {
                     GeneralErrorsHandler(
-                        { message, code ->
-                            checkError(message, code, errorId)
+                        { message, _ ->
+                            showErrorMessage(message)
                         }, status.exception!!
                     )
                 }
@@ -55,12 +56,6 @@ abstract class BaseViewModel : ViewModel() {
             }
         }
     }
-
-    private fun checkError(message: Any, code: Int, errorId: Int?) {
-        _baseEvent.emitSuspending(BaseViewEvent.ShowErrorMessage(message, errorId))
-
-    }
-
     private fun showLoading() {
         _baseEvent.emitSuspending(BaseViewEvent.ShowLoading)
     }
@@ -70,11 +65,11 @@ abstract class BaseViewModel : ViewModel() {
 
     }
 
-    private fun showErrorMessage(message: Any, errorId: Int? = null) {
-        _baseEvent.emitSuspending(BaseViewEvent.ShowErrorMessage(message, errorId))
+    private fun showErrorMessage(message: Any) {
+        _baseEvent.emitSuspending(BaseViewEvent.ShowErrorMessage(message))
 
     }
 
-    private fun <T> MutableSharedFlow<T>.emitSuspending(value: T) =
+    fun <T> MutableSharedFlow<T>.emitSuspending(value: T) =
         viewModelScope.launch(Dispatchers.IO) { emit(value) }
 }

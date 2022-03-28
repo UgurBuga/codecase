@@ -6,6 +6,6 @@ sealed class BaseViewEvent {
 
     object DismissLoading : BaseViewEvent()
 
-    data class ShowErrorMessage(val message: Any, val errorId: Int? = null) : BaseViewEvent()
+    data class ShowErrorMessage(val message: Any) : BaseViewEvent()
 
 }

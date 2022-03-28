@@ -1,5 +1,11 @@
-package com.ugurbuga.codecase.domain
+package com.ugurbuga.codecase.domain.mapper
 
+import com.ugurbuga.codecase.data.model.response.ProductDetailResponse
+import com.ugurbuga.codecase.domain.model.ProductDetailUIModel
+import com.ugurbuga.codecase.data.model.response.ProductListResponse
+import com.ugurbuga.codecase.domain.model.ProductListUIModel
+import com.ugurbuga.codecase.data.model.response.ProductResponse
+import com.ugurbuga.codecase.domain.model.ProductUIModel
 import javax.inject.Inject
 
 class ProductMapper @Inject constructor() {
@@ -29,5 +35,4 @@ class ProductMapper @Inject constructor() {
             productId = response.productId
         )
     }
-
 }

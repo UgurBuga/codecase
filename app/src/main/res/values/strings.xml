@@ -3,4 +3,6 @@
     <string name="image_detail">image_detail</string>
     <string name="network_error">Network Error</string>
     <string name="default_error">Default Error</string>
+    <string name="list_is_empty">List is Empty</string>
+    <string name="wrong_product_id">Wrong Product ID</string>
 </resources>

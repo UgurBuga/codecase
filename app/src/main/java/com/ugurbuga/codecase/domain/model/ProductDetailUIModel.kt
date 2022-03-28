@@ -1,4 +1,4 @@
-package com.ugurbuga.codecase.domain
+package com.ugurbuga.codecase.domain.model
 
 data class ProductDetailUIModel(
     val description: String,
